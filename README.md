@@ -90,11 +90,16 @@ This toolkit gives you the whole system:
 
 **No context loss.** Every session builds on the last. Every contributor adds to the knowledge center. Every decision is recorded.
 
+## Requirements
+
+- [Claude Code](https://claude.ai/download) - Anthropic's official CLI
+- [Claude Pro](https://claude.ai/pro) ($20/mo) or [Claude Max](https://claude.ai/max) ($100/mo) subscription
+
 ## Quick Start
 
 ```bash
 # 1. Clone this repo
-git clone https://github.com/yourname/gtm-toolkit
+git clone https://github.com/402goose/gtm-toolkit
 cd gtm-toolkit
 
 # 2. Set up your foundation
