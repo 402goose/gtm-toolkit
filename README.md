@@ -3,21 +3,21 @@
 A Claude Code-powered workflow for running go-to-market campaigns from zero to launch.
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                             │
-│   FOUNDATION        COLLABORATION        BRAND        CONTENT        LAUNCH │
-│                                                                             │
-│   ┌─────────┐       ┌───────────┐      ┌──────┐     ┌─────────┐    ┌─────┐ │
-│   │Strategy │   →   │  Team     │  →   │Create│  →  │Generate │ →  │Ship │ │
-│   │  Docs   │       │  Context  │      │Assets│     │Content  │    │ It  │ │
-│   └─────────┘       └───────────┘      └──────┘     └─────────┘    └─────┘ │
-│                                                                             │
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│   FOUNDATION        COLLABORATION        BRAND        CONTENT        LAUNCH  │
+│                                                                              │
+│   ┌─────────┐       ┌───────────┐      ┌──────┐     ┌─────────┐    ┌─────┐   │
+│   │Strategy │   →   │  Team     │  →   │Create│  →  │Generate │ →  │Ship │   │
+│   │  Docs   │       │  Context  │      │Assets│     │Content  │    │ It  │   │
+│   └─────────┘       └───────────┘      └──────┘     └─────────┘    └─────┘   │
+│                                                                              │
 │   vision            contributors       marks         threads       countdown │
 │   narrative         suggestions        colors        articles      HUD       │
 │   thesis            CRM               typography     one-pagers    launch    │
 │   roadmap           tasks              website       decks                   │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ## What This Does
