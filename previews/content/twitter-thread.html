@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Thread Preview - Content Creator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #000;
+      color: #e7e9ea;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      border-left: 1px solid #2f3336;
+      border-right: 1px solid #2f3336;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      padding: 16px;
+      border-bottom: 1px solid #2f3336;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* Tweet */
+    .tweet {
+      padding: 16px;
+      border-bottom: 1px solid #2f3336;
+    }
+
+    .tweet-header {
+      display: flex;
+      gap: 12px;
+    }
+
+    .tweet-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #333;
+      flex-shrink: 0;
+    }
+
+    .tweet-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .tweet-meta {
+      flex: 1;
+    }
+
+    .tweet-author {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tweet-name {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .tweet-verified {
+      width: 18px;
+      height: 18px;
+      background: #1d9bf0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tweet-verified svg {
+      width: 12px;
+      height: 12px;
+      fill: #fff;
+    }
+
+    .tweet-handle {
+      color: #71767b;
+      font-size: 15px;
+    }
+
+    .tweet-time {
+      color: #71767b;
+      font-size: 15px;
+    }
+
+    .tweet-content {
+      margin-top: 12px;
+      font-size: 17px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
+
+    .tweet-content a {
+      color: #1d9bf0;
+      text-decoration: none;
+    }
+
+    .tweet-thread-line {
+      position: relative;
+      padding-left: 60px;
+    }
+
+    .tweet-thread-line::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #333;
+    }
+
+    .tweet-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      max-width: 400px;
+    }
+
+    .tweet-action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #71767b;
+      font-size: 13px;
+    }
+
+    .tweet-action svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Thread counter */
+    .thread-counter {
+      color: #1d9bf0;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Controls */
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .controls button {
+      padding: 12px 20px;
+      background: #1d9bf0;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .controls button:hover {
+      background: #1a8cd8;
+    }
+
+    .controls button.secondary {
+      background: transparent;
+      border: 1px solid #536471;
+      color: #e7e9ea;
+    }
+
+    /* Edit mode */
+    .tweet-content[contenteditable="true"] {
+      outline: none;
+      background: rgba(29, 155, 240, 0.1);
+      padding: 8px;
+      margin: -8px;
+      border-radius: 8px;
+    }
+
+    /* Instructions overlay */
+    .instructions-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .instructions-overlay.hidden {
+      display: none;
+    }
+
+    .instructions-box {
+      background: #16181c;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 500px;
+      border: 1px solid #2f3336;
+    }
+
+    .instructions-box h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .instructions-box p {
+      color: #71767b;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .instructions-box code {
+      background: #000;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: #e7e9ea;
+    }
+
+    .instructions-box button {
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: #1d9bf0;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>Thread Preview</h1>
+    </div>
+
+    <!-- Thread tweets -->
+    <div id="thread-container">
+      <!-- Tweets will be inserted here -->
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="toggleEdit()">Edit Thread</button>
+    <button class="secondary" onclick="exportThread()">Copy Text</button>
+    <button class="secondary" onclick="showInstructions()">Help</button>
+  </div>
+
+  <div class="instructions-overlay hidden" id="instructions">
+    <div class="instructions-box">
+      <h2>Thread Preview</h2>
+      <p>
+        This preview shows your thread as it will appear on Twitter.
+      </p>
+      <p>
+        <strong>To generate a thread:</strong><br>
+        Run <code>/content thread [topic]</code>
+      </p>
+      <p>
+        <strong>To edit:</strong><br>
+        Click "Edit Thread" and modify text directly.
+      </p>
+      <p>
+        <strong>To export:</strong><br>
+        Click "Copy Text" to copy the thread as plain text.
+      </p>
+      <button onclick="hideInstructions()">Got it</button>
+    </div>
+  </div>
+
+  <script>
+    // Thread data - populated by /content thread
+    const threadData = {
+      author: {
+        name: "Your Brand",
+        handle: "@yourbrand",
+        avatar: "../outputs/svg/mark/pfp-400-dark.svg",
+        verified: true
+      },
+      tweets: [
+        {
+          content: "1/ Your hook tweet goes here.\n\nThis is where you stop the scroll.",
+          replies: 12,
+          retweets: 45,
+          likes: 234,
+          views: "12.3K"
+        },
+        {
+          content: "2/ Context and problem setup.\n\nExplain why this matters.",
+          replies: 3,
+          retweets: 12,
+          likes: 89,
+          views: "8.1K"
+        },
+        {
+          content: "3/ Your insight or solution.\n\nThe meat of your thread.",
+          replies: 8,
+          retweets: 34,
+          likes: 156,
+          views: "9.2K"
+        },
+        {
+          content: "4/ Proof or example.\n\nBack it up with evidence.",
+          replies: 5,
+          retweets: 23,
+          likes: 112,
+          views: "7.8K"
+        },
+        {
+          content: "5/ Implications or future.\n\nWhy this matters going forward.",
+          replies: 4,
+          retweets: 19,
+          likes: 98,
+          views: "6.9K"
+        },
+        {
+          content: "6/ Call to action.\n\nWhat should people do next?\n\nLink: https://yourbrand.com",
+          replies: 15,
+          retweets: 67,
+          likes: 289,
+          views: "11.4K"
+        }
+      ]
+    };
+
+    function renderThread() {
+      const container = document.getElementById('thread-container');
+      container.innerHTML = '';
+
+      threadData.tweets.forEach((tweet, index) => {
+        const isLast = index === threadData.tweets.length - 1;
+        const tweetEl = document.createElement('div');
+        tweetEl.className = 'tweet' + (isLast ? '' : ' tweet-thread-line');
+        tweetEl.innerHTML = `
+          <div class="tweet-header">
+            <div class="tweet-avatar">
+              <img src="${threadData.author.avatar}" onerror="this.style.display='none'">
+            </div>
+            <div class="tweet-meta">
+              <div class="tweet-author">
+                <span class="tweet-name">${threadData.author.name}</span>
+                ${threadData.author.verified ? `
+                <span class="tweet-verified">
+                  <svg viewBox="0 0 24 24"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"></path></svg>
+                </span>
+                ` : ''}
+                <span class="tweet-handle">${threadData.author.handle}</span>
+                <span class="tweet-time">· 2h</span>
+              </div>
+            </div>
+          </div>
+          <div class="tweet-content" data-index="${index}">${tweet.content}</div>
+          <div class="tweet-actions">
+            <div class="tweet-action">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"></path></svg>
+              ${tweet.replies}
+            </div>
+            <div class="tweet-action">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"></path></svg>
+              ${tweet.retweets}
+            </div>
+            <div class="tweet-action">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"></path></svg>
+              ${tweet.likes}
+            </div>
+            <div class="tweet-action">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"></path></svg>
+              ${tweet.views}
+            </div>
+          </div>
+        `;
+        container.appendChild(tweetEl);
+      });
+    }
+
+    let isEditing = false;
+
+    function toggleEdit() {
+      isEditing = !isEditing;
+      document.querySelectorAll('.tweet-content').forEach(el => {
+        el.contentEditable = isEditing;
+      });
+    }
+
+    function exportThread() {
+      const text = threadData.tweets.map(t => t.content).join('\n\n---\n\n');
+      navigator.clipboard.writeText(text);
+      alert('Thread copied to clipboard!');
+    }
+
+    function showInstructions() {
+      document.getElementById('instructions').classList.remove('hidden');
+    }
+
+    function hideInstructions() {
+      document.getElementById('instructions').classList.add('hidden');
+    }
+
+    // Initial render
+    renderThread();
+  </script>
+
+</body>
+</html>

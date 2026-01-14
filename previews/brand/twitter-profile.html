@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitter Profile Preview - Brand Architect</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #15202b;
+      color: #fff;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 12px;
+      font-weight: 400;
+      color: #8899a6;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    .preview-row {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+
+    .preview-item {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+    }
+
+    .preview-label {
+      font-size: 11px;
+      color: #8899a6;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Twitter Profile Card */
+    .twitter-profile {
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #38444d;
+    }
+
+    .twitter-banner {
+      width: 100%;
+      height: 200px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .twitter-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .twitter-banner .placeholder {
+      color: #38444d;
+      font-size: 14px;
+    }
+
+    .twitter-profile-content {
+      padding: 12px 16px 16px;
+      position: relative;
+    }
+
+    .twitter-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #15202b;
+      border: 4px solid #000;
+      position: absolute;
+      top: -40px;
+      left: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .twitter-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .twitter-avatar .placeholder {
+      color: #38444d;
+      font-size: 10px;
+    }
+
+    .twitter-name {
+      margin-top: 48px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .twitter-handle {
+      color: #8899a6;
+      font-size: 15px;
+      margin-top: 2px;
+    }
+
+    .twitter-bio {
+      margin-top: 12px;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #d9d9d9;
+    }
+
+    .twitter-stats {
+      display: flex;
+      gap: 20px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .twitter-stats span {
+      color: #8899a6;
+    }
+
+    .twitter-stats strong {
+      color: #fff;
+    }
+
+    /* Options Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .option-card {
+      background: #192734;
+      border: 2px solid #38444d;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .option-card:hover {
+      border-color: #1da1f2;
+    }
+
+    .option-card.selected {
+      border-color: #1da1f2;
+      background: #1a3a4a;
+    }
+
+    .option-card img {
+      max-width: 80px;
+      max-height: 80px;
+      margin-bottom: 10px;
+    }
+
+    .option-card .name {
+      font-size: 12px;
+      color: #8899a6;
+    }
+
+    /* Instructions */
+    .instructions {
+      background: #192734;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #8899a6;
+      line-height: 1.6;
+    }
+
+    .instructions code {
+      background: #000;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: #fff;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .theme-toggle button {
+      padding: 8px 16px;
+      border: 1px solid #38444d;
+      border-radius: 20px;
+      background: transparent;
+      color: #8899a6;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .theme-toggle button.active {
+      background: #1da1f2;
+      border-color: #1da1f2;
+      color: #fff;
+    }
+
+    /* Light mode */
+    body.light {
+      background: #fff;
+      color: #000;
+    }
+
+    body.light .twitter-profile {
+      background: #fff;
+      border-color: #eee;
+    }
+
+    body.light .twitter-banner {
+      background: #eee;
+    }
+
+    body.light .twitter-avatar {
+      background: #fff;
+      border-color: #fff;
+    }
+
+    body.light .twitter-name {
+      color: #000;
+    }
+
+    body.light .twitter-bio {
+      color: #333;
+    }
+
+    body.light .option-card {
+      background: #f7f9fa;
+      border-color: #eee;
+    }
+
+    body.light .instructions {
+      background: #f7f9fa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="theme-toggle">
+    <button class="active" onclick="setTheme('dark')">Dark</button>
+    <button onclick="setTheme('light')">Light</button>
+  </div>
+
+  <h1>Twitter Profile Preview</h1>
+
+  <div class="preview-row">
+    <div class="preview-item">
+      <div class="preview-label">Profile Preview</div>
+      <div class="twitter-profile">
+        <div class="twitter-banner" id="banner-preview">
+          <!-- Banner image loads here -->
+          <span class="placeholder">Banner: 1500x500</span>
+        </div>
+        <div class="twitter-profile-content">
+          <div class="twitter-avatar" id="avatar-preview">
+            <!-- Avatar image loads here -->
+            <span class="placeholder">PFP</span>
+          </div>
+          <div class="twitter-name" id="brand-name">Brand Name</div>
+          <div class="twitter-handle" id="brand-handle">@brandhandle</div>
+          <div class="twitter-bio" id="brand-bio">Your brand tagline goes here</div>
+          <div class="twitter-stats">
+            <span><strong>142</strong> Following</span>
+            <span><strong>3.2K</strong> Followers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>Mark Options</h1>
+  <div class="preview-label">Click to select, then refresh to see in context</div>
+  <div class="options-grid" id="mark-options">
+    <!-- Mark options load here -->
+    <div class="option-card">
+      <div class="placeholder" style="height: 80px; display: flex; align-items: center; justify-content: center;">
+        No marks yet
+      </div>
+      <div class="name">Run /brand-architect</div>
+    </div>
+  </div>
+
+  <h1>Banner Options</h1>
+  <div class="options-grid" id="banner-options">
+    <!-- Banner options load here -->
+    <div class="option-card">
+      <div class="placeholder" style="height: 50px; display: flex; align-items: center; justify-content: center;">
+        No banners yet
+      </div>
+      <div class="name">Run /web-architect</div>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <strong>How to use this preview:</strong><br><br>
+    1. Run <code>/brand-architect</code> to generate mark options<br>
+    2. Mark SVGs will appear in the options grid above<br>
+    3. Click an option to select it for preview<br>
+    4. Run <code>/web-architect implement social</code> to generate banners<br>
+    5. Toggle dark/light mode to see how marks work in both themes<br><br>
+    <strong>Files location:</strong><br>
+    Marks: <code>outputs/svg/mark/</code><br>
+    Banners: <code>outputs/svg/social/</code>
+  </div>
+
+  <script>
+    function setTheme(theme) {
+      document.body.className = theme === 'light' ? 'light' : '';
+      document.querySelectorAll('.theme-toggle button').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === theme);
+      });
+    }
+
+    // Load mark options from outputs folder
+    // This would be populated by the brand-architect skill
+    function loadOptions() {
+      // Placeholder - skill will update this file with actual options
+    }
+
+    loadOptions();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One-Pager Preview - Print Ready</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a1a;
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      background: #333;
+      border: 1px solid #444;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .controls button:hover {
+      background: #444;
+    }
+
+    .controls button.primary {
+      background: #0066ff;
+      border-color: #0066ff;
+    }
+
+    .controls select {
+      padding: 10px 16px;
+      background: #333;
+      border: 1px solid #444;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    /* Page Container */
+    .page-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* The One-Pager */
+    .one-pager {
+      width: 8.5in;
+      min-height: 11in;
+      background: #000;
+      color: #fff;
+      padding: 0.75in;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .one-pager.light {
+      background: #fff;
+      color: #000;
+    }
+
+    /* Header */
+    .op-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5in;
+      padding-bottom: 0.25in;
+      border-bottom: 2px solid #333;
+    }
+
+    .one-pager.light .op-header {
+      border-color: #ddd;
+    }
+
+    .op-logo {
+      width: 80px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .op-logo img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .op-date {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Main Content */
+    .op-headline {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.15in;
+    }
+
+    .op-subhead {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 0.4in;
+      line-height: 1.4;
+    }
+
+    .one-pager.light .op-subhead {
+      color: #666;
+    }
+
+    /* Sections */
+    .op-section {
+      margin-bottom: 0.35in;
+    }
+
+    .op-section-title {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00ff88;
+      margin-bottom: 0.1in;
+    }
+
+    .one-pager.light .op-section-title {
+      color: #006644;
+    }
+
+    .op-section-content {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .one-pager.light .op-section-content {
+      color: #333;
+    }
+
+    /* Benefits List */
+    .op-benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.15in 0.3in;
+    }
+
+    .op-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    .one-pager.light .op-benefit {
+      color: #333;
+    }
+
+    .op-benefit-icon {
+      color: #00ff88;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .one-pager.light .op-benefit-icon {
+      color: #006644;
+    }
+
+    /* Stats */
+    .op-stats {
+      display: flex;
+      gap: 0.4in;
+      margin: 0.3in 0;
+      padding: 0.2in 0;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+
+    .one-pager.light .op-stats {
+      border-color: #ddd;
+    }
+
+    .op-stat {
+      text-align: center;
+    }
+
+    .op-stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #00ff88;
+    }
+
+    .one-pager.light .op-stat-value {
+      color: #006644;
+    }
+
+    .op-stat-label {
+      font-size: 10px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* CTA */
+    .op-cta {
+      margin-top: 0.4in;
+      padding: 0.2in;
+      background: #111;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .one-pager.light .op-cta {
+      background: #f5f5f5;
+    }
+
+    .op-cta-text {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .op-cta-link {
+      font-size: 16px;
+      color: #00ff88;
+      font-weight: 700;
+    }
+
+    .one-pager.light .op-cta-link {
+      color: #006644;
+    }
+
+    /* Footer */
+    .op-footer {
+      position: absolute;
+      bottom: 0.5in;
+      left: 0.75in;
+      right: 0.75in;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #666;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+
+      .controls {
+        display: none;
+      }
+
+      .page-container {
+        display: block;
+      }
+
+      .one-pager {
+        box-shadow: none;
+        width: 100%;
+        min-height: auto;
+      }
+    }
+
+    /* Instructions */
+    .instructions {
+      margin-top: 30px;
+      padding: 20px;
+      background: #222;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #888;
+      max-width: 600px;
+    }
+
+    .instructions code {
+      background: #333;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <button class="primary" onclick="window.print()">Print / Export PDF</button>
+    <button onclick="toggleTheme()">Toggle Dark/Light</button>
+    <select onchange="setSize(this.value)">
+      <option value="letter">Letter (8.5x11)</option>
+      <option value="a4">A4</option>
+    </select>
+  </div>
+
+  <div class="page-container">
+    <div class="one-pager" id="one-pager">
+      <div class="op-header">
+        <div class="op-logo">
+          <!-- Logo loads here -->
+          <img src="../../outputs/svg/mark/mark-v1-transparent.svg" alt="Logo" onerror="this.parentElement.innerHTML='[LOGO]'">
+        </div>
+        <div class="op-date">January 2026</div>
+      </div>
+
+      <h1 class="op-headline">Your Headline Goes Here</h1>
+      <p class="op-subhead">A compelling subheadline that expands on the main message and draws the reader in.</p>
+
+      <div class="op-section">
+        <div class="op-section-title">The Problem</div>
+        <div class="op-section-content">
+          Describe the problem your audience faces. Make it specific and relatable. This should resonate with anyone who reads it.
+        </div>
+      </div>
+
+      <div class="op-section">
+        <div class="op-section-title">The Solution</div>
+        <div class="op-section-content">
+          Explain your solution clearly and concisely. Focus on outcomes, not features. What does it enable?
+        </div>
+      </div>
+
+      <div class="op-section">
+        <div class="op-section-title">Key Benefits</div>
+        <div class="op-benefits">
+          <div class="op-benefit">
+            <span class="op-benefit-icon">+</span>
+            <span>Benefit one that matters to your audience</span>
+          </div>
+          <div class="op-benefit">
+            <span class="op-benefit-icon">+</span>
+            <span>Benefit two with specific value prop</span>
+          </div>
+          <div class="op-benefit">
+            <span class="op-benefit-icon">+</span>
+            <span>Benefit three showing differentiation</span>
+          </div>
+          <div class="op-benefit">
+            <span class="op-benefit-icon">+</span>
+            <span>Benefit four with compelling outcome</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="op-stats">
+        <div class="op-stat">
+          <div class="op-stat-value">10x</div>
+          <div class="op-stat-label">Faster</div>
+        </div>
+        <div class="op-stat">
+          <div class="op-stat-value">$0</div>
+          <div class="op-stat-label">To Start</div>
+        </div>
+        <div class="op-stat">
+          <div class="op-stat-value">24/7</div>
+          <div class="op-stat-label">Available</div>
+        </div>
+      </div>
+
+      <div class="op-section">
+        <div class="op-section-title">Proof Points</div>
+        <div class="op-section-content">
+          • Evidence point one with specific data or testimonial<br>
+          • Evidence point two showing traction or results<br>
+          • Evidence point three demonstrating credibility
+        </div>
+      </div>
+
+      <div class="op-cta">
+        <div class="op-cta-text">Ready to get started?</div>
+        <div class="op-cta-link">yourbrand.com</div>
+      </div>
+
+      <div class="op-footer">
+        <span>yourbrand.com</span>
+        <span>contact@yourbrand.com</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <strong>How to use:</strong><br><br>
+    1. Run <code>/content one-pager [topic]</code> to generate content<br>
+    2. Content will populate this template<br>
+    3. Click "Print / Export PDF" to save as PDF<br>
+    4. Toggle dark/light based on print preference
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.getElementById('one-pager').classList.toggle('light');
+    }
+
+    function setSize(size) {
+      const page = document.getElementById('one-pager');
+      if (size === 'a4') {
+        page.style.width = '210mm';
+        page.style.minHeight = '297mm';
+      } else {
+        page.style.width = '8.5in';
+        page.style.minHeight = '11in';
+      }
+    }
+  </script>
+
+</body>
+</html>

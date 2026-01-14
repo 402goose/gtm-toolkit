@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
+  <!-- Twitter Banner - CAT Wordmark X-LARGE - Dark Mode -->
+  <!-- Wordmark 160px height (480x160), padding 50px/90px, box 660x260 -->
+  <rect width="100%" height="100%" fill="#000000"/>
+
+  <!-- Gray box: centered at (1500-660)/2=420, (500-260)/2=120 -->
+  <rect x="420" y="120" width="660" height="260" fill="#333333"/>
+
+  <!-- CAT wordmark: scale 1.6x, LEFT-aligned with 90px padding, vertically centered -->
+  <!-- Box at x=420. Left padding 90px. Content offset 15*1.6=24. X = 420+90-24 = 486 -->
+  <!-- Vertical: box y=120, height=260. Content height=112. Padding=(260-112)/2=74. Y = 120+74-24 = 170 -->
+  <g transform="translate(486, 170) scale(1.6)">
+    <g fill="#FFFFFF">
+      <!-- C -->
+      <rect x="15" y="15" width="55" height="12"/>
+      <rect x="15" y="15" width="12" height="70"/>
+      <rect x="15" y="73" width="55" height="12"/>
+      <!-- A -->
+      <rect x="90" y="15" width="12" height="70"/>
+      <rect x="90" y="15" width="55" height="12"/>
+      <rect x="133" y="15" width="12" height="70"/>
+      <rect x="90" y="42" width="55" height="12"/>
+      <!-- T -->
+      <rect x="165" y="15" width="55" height="12"/>
+      <rect x="185" y="15" width="12" height="70"/>
+    </g>
+  </g>
+</svg>
