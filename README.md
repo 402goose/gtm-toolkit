@@ -347,7 +347,7 @@ Launch:  Ship it
 │   Founder         GTM Lead         Designer         Dev         │
 │      │               │                │              │          │
 │      └───────────────┴────────────────┴──────────────┘          │
-│                              │                                   │
+│                              │                                  │
 │                      ┌───────▼───────┐                          │
 │                      │  KNOWLEDGE    │                          │
 │                      │    CENTER     │                          │
@@ -358,13 +358,13 @@ Launch:  Ship it
 │                      │  Voice        │                          │
 │                      │  CRM          │                          │
 │                      └───────────────┘                          │
-│                              │                                   │
-│                       Claude Code                                │
-│                              │                                   │
+│                              │                                  │
+│                       Claude Code                               │
+│                              │                                  │
 │              ┌───────────────┼───────────────┐                  │
-│              │               │               │                   │
-│           Brand          Content         Campaign                │
-│         Architect        Creator           HUD                   │
+│              │               │               │                  │
+│           Brand          Content         Campaign               │
+│         Architect        Creator           HUD                  │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -431,4 +431,4 @@ See `examples/402-cat/` for a complete GTM implementation:
 
 ---
 
-Built with Claude Code. Battle-tested on the 402.cat launch campaign.
+Built with Claude Code. adapted from the 402.cat launch campaign.
