@@ -1,11 +1,15 @@
 ---
 name: web-architect
-description: Generate brand assets from decisions - CSS, favicons, social images, exports
+description: Generate brand assets and audit web code against best practices - CSS, favicons, social images, exports, React/Next.js performance
 ---
 
 # Web Architect Skill
 
-Implements the brand system by generating all required assets.
+Implements the brand system by generating all required assets. Also audits web code against best practices.
+
+## Related Skills
+
+- **react-best-practices** - React/Next.js performance optimization. Use when building or auditing React sites.
 
 ## Capabilities
 
@@ -267,3 +271,39 @@ Missing:
 
 Update knowledge/BRAND_DECISIONS.md or run /brand-architect decide.
 ```
+
+---
+
+## Code Auditing
+
+### React/Next.js Projects
+
+For React or Next.js sites, use the **react-best-practices** skill:
+
+```
+/web-architect audit react
+```
+
+This runs the Vercel React Best Practices audit covering:
+- Eliminating waterfalls (CRITICAL)
+- Bundle size optimization (CRITICAL)
+- Server-side performance (HIGH)
+- Client-side data fetching (MEDIUM-HIGH)
+- Re-render optimization (MEDIUM)
+- Rendering performance (MEDIUM)
+- JavaScript performance (LOW-MEDIUM)
+
+See `skills/react-best-practices/SKILL.md` for full rule reference.
+
+### Static Sites
+
+For static HTML sites:
+```
+/web-architect audit static
+```
+
+Checks:
+- Asset optimization (images, SVGs)
+- CSS best practices
+- Accessibility basics
+- Performance hints
