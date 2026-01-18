@@ -4,71 +4,82 @@
 
 ---
 
-## The One-Liner
+## The Vision is Emergent
 
-**What you're building in one sentence:**
-<!-- Example: "The operating system for autonomous AI agents" -->
+**Don't force a one-liner too early.**
+
+Vision is blurry at the start. It gets teased out through product development, meeting the market, and real conversations with real people. Forcing a tagline before you've figured it out produces something that feels wrong when you read it back.
+
+**This document is a pointer, not a declaration.**
+
+---
+
+## How to Understand What You're Building
+
+Read these in order. The vision lives here, not in a tagline:
+
+| Priority | Doc | What It Tells You |
+|----------|-----|-------------------|
+| 1 | Product spec (if any) | What you're actually building |
+| 2 | GTM strategy | Who you're targeting and why |
+| 3 | `content/articles/` | How you explain it to the world |
+| 4 | `drafts/` | Active pitches to real people |
+| 5 | CRM notes | What resonates with real people |
+
+---
+
+## Current Understanding (Synthesized)
+
+*Update this section as clarity emerges. Don't commit to it upfront.*
+
+**What we're building:**
+<!-- Synthesize from your living docs, not declared upfront -->
+
+
+**Who it's for:**
+<!-- Gets clearer as you talk to real people -->
+
+
+**The core insight:**
+<!-- The thing that makes this work - emerges through building -->
+
+
+**Where this is going:**
+<!-- The bigger play - often unclear at first -->
 
 
 ---
 
-## The Problem
+## What Stays Constant
 
-**What's broken today:**
-<!-- What pain exists? Why hasn't this been solved? -->
+*Even as the vision evolves, some things don't change:*
 
-
-**Who feels this pain:**
-<!-- Be specific about your audience -->
-
+-
+-
+-
 
 ---
 
-## The Solution
+## What's Still Blurry
 
-**What you're building:**
-<!-- Your product/service in plain terms -->
+*Be honest about what's not figured out:*
 
-
-**Why this works:**
-<!-- What makes your approach right? -->
-
+-
+-
+-
 
 ---
 
-## The Shift
-
-**Before (status quo):**
-<!-- How things work today -->
-
-
-**After (your world):**
-<!-- How things work with your solution -->
-
-
----
-
-## Why Now
-
-**What changed that makes this possible/urgent:**
-<!-- New technology? Market shift? Regulatory change? -->
-
-
----
-
-## The End State
-
-**Where this is going (3-5 years out):**
-<!-- The big vision - what does success look like? -->
-
-
----
-
-## Quick Reference
+## Quick Reference (Fill In As It Becomes Clear)
 
 | Question | Answer |
 |----------|--------|
-| What do you do? | {one sentence} |
-| For whom? | {audience} |
-| Why does it matter? | {core insight} |
-| Why will you win? | {unfair advantage} |
+| What do you do? | {emerges through building} |
+| For whom? | {gets clearer through conversations} |
+| Why does it matter? | {the insight that sticks} |
+| Why will you win? | {unfair advantage, if you have one} |
+
+---
+
+*Last updated: {date}*
+*Vision crystallizes through building and selling, not through declaration.*

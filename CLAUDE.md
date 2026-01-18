@@ -125,11 +125,27 @@ What do you want to work on?
 
 ## Knowledge Sources
 
-### Strategic Docs (The Foundation)
+### Understanding the Vision (Emergent, Not Static)
+
+**The vision is emergent.** Don't parrot a stale one-liner from VISION.md. Vision is blurry at the start and gets teased out through product development and market feedback.
+
+Instead, synthesize understanding from living docs:
+
+| Priority | Document | What It Tells You |
+|----------|----------|-------------------|
+| 1 | Product specs, if any | What you're actually building |
+| 2 | GTM strategy docs | Who you're targeting and why |
+| 3 | `content/articles/` | How you explain it to the world |
+| 4 | `drafts/` | Active pitches to real people |
+| 5 | CRM notes | What resonates with real people |
+| 6 | `knowledge/VISION.md` | Pointer doc + current synthesis |
+
+When someone asks "what is this?", read the living docs and synthesize. The vision crystallizes through building and selling, not through declaration.
+
+### Other Strategic Docs
 
 | Document | Purpose | How Claude Uses It |
 |----------|---------|-------------------|
-| `knowledge/VISION.md` | What you're building | Answer "What is this?" |
 | `knowledge/NARRATIVE.md` | How you tell the story | Generate content |
 | `knowledge/THESIS.md` | Why this wins | Answer "Why will you win?" |
 | `knowledge/ROADMAP.md` | What ships when | Track progress, countdown |
@@ -353,14 +369,14 @@ See you next time.
 
 ## Context to Always Have
 
-Read from your strategic docs, but here's what to internalize:
+Read from your living docs and synthesize. Don't rely on stale one-liners.
 
 **Launch Date:** {from ROADMAP.md}
-**Vision:** {from VISION.md one-liner}
-**Tagline:** {from NARRATIVE.md}
 **Current Phase:** {from ROADMAP.md}
+**What we're building:** {synthesize from product spec, articles, drafts}
+**Who it's for:** {synthesize from GTM strategy, CRM notes}
 
-Pull fresh from the docs each session - they're the source of truth.
+Pull fresh from the docs each session. The vision emerges through building, not declaration.
 
 ---
 
