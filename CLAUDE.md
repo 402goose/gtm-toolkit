@@ -125,11 +125,15 @@ What do you want to work on?
 
 ## Knowledge Sources
 
-### Understanding the Vision (Emergent, Not Static)
+### Understanding the Vision
 
-**The vision is emergent.** Don't parrot a stale one-liner from VISION.md. Vision is blurry at the start and gets teased out through product development and market feedback.
+**Check VISION.md status first:**
+- If `Status: EMERGENT` → Synthesize from living docs below
+- If `Status: DECLARED` → Use the declared vision, stop synthesizing
 
-Instead, synthesize understanding from living docs:
+Vision is blurry at the start and gets teased out through product development. But at some point, the founder nails it.
+
+**When EMERGENT**, synthesize understanding from living docs:
 
 | Priority | Document | What It Tells You |
 |----------|----------|-------------------|

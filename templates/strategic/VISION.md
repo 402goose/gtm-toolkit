@@ -4,17 +4,39 @@
 
 ---
 
-## The Vision is Emergent
+## Status: EMERGENT
+<!-- Change to DECLARED when you've nailed it -->
+
+**When EMERGENT:** Vision is still forming. Synthesize understanding from living docs below. Don't parrot a stale one-liner.
+
+**When DECLARED:** The founder has set the vision. Use the declaration in "The Vision" section below. Stop synthesizing.
+
+---
 
 **Don't force a one-liner too early.**
 
 Vision is blurry at the start. It gets teased out through product development, meeting the market, and real conversations with real people. Forcing a tagline before you've figured it out produces something that feels wrong when you read it back.
 
-**This document is a pointer, not a declaration.**
+**But at some point, you nail it.** When that happens, change status to DECLARED and fill in "The Vision" section.
 
 ---
 
-## How to Understand What You're Building
+## The Vision (When Declared)
+
+<!-- Fill this in when you've nailed it. Until then, leave blank. -->
+
+**One-liner:**
+
+
+**The insight:**
+
+
+**Why we win:**
+
+
+---
+
+## How to Understand What You're Building (When Emergent)
 
 Read these in order. The vision lives here, not in a tagline:
 
